@@ -1,11 +1,12 @@
 import matplotlib.pyplot as plt
 
-# creating variables to put in the coordinate system (CS)
+# creating variables to put in the coordinate system (CS) and creating a variable for the database file
+database = 'TestRouteSvg.csv'
 xs = []
 ys = []
 
 # filling the variables with the points from the .csv file
-with open('TestRoute.csv', 'r') as file:
+with open(database, 'r') as file:
     for line in file:
         data = line.strip().split(",")
 

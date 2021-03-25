@@ -37,7 +37,7 @@ print(dbscan_data)
 -- min_samples :: requires a minimum 20 data points in a neighborhood
 -- eps :: in radius 0.02
 '''
-model = DBSCAN(eps=0.04, min_samples=10, metric='euclidean').fit(dbscan_data)
+model = DBSCAN(eps=0.05, min_samples=20, metric='euclidean').fit(dbscan_data)
 print(model)
 
 # Seperate outliers from clustered data
@@ -56,15 +56,17 @@ print('Number of clusters = {}'.format((len(clusters)-1)))
 
 # Plot clusters an outliers
 imData = plt.imread('map.png')
-fig = plt.figure()
-ax = fig.add_axes([.1, .1, 1, 1])
-ax.scatter(clusters_df['long'], clusters_df['lat'], c=colors_clusters, edgecolors='black', s=50)
-ax.scatter(outliers_df['long'], outliers_df['lat'], c=color_outliers, edgecolors='black', s=50)
+# fig = plt.figure()
+# ax = fig.add_axes([.1, .1, 1, 1])
+fig, ax = plt.subplots()
+ax.scatter(clusters_df['long'], clusters_df['lat'], c=colors_clusters, s=50)
+ax.scatter(outliers_df['long'], outliers_df['lat'], c=color_outliers, edgecolors='black', s=30)
 ax.set_xlabel('Longitude', family='Arial', fontsize=9)
 ax.set_ylabel('Latitude', family='Arial', fontsize=9)
 ax.imshow(imData, extent=[12.25800, 12.47678, 51.27130, 51.40799])
 ax.set_aspect(1.0/ax.get_data_ratio(), adjustable='box')
 plt.title('Clustering GPS data into hotspots', family='Arial', fontsize=12)
-plt.grid(which='major', color='#cccccc', alpha=0.45)
+#plt.grid(which='major', color='#cccccc', alpha=0.45)
+
 
 plt.show()

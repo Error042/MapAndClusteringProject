@@ -24,7 +24,8 @@ ax.imshow(imData, extent=[12.25800, 12.47678, 51.27130, 51.40799])
 ax.set_aspect(1.0/ax.get_data_ratio(), adjustable='box')
 
 # placing the coordinates in the CS and labeling the axes
-plt.plot(xs, ys, color='red', marker='o')
+#plt.plot(xs, ys, color='red', marker='o')
+plt.plot(xs, ys)
 plt.xlabel('Latitude')
 plt.ylabel('Longitude')
 

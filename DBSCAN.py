@@ -1,11 +1,8 @@
-import numpy as np
 import pandas as pd
 from sklearn.cluster import DBSCAN
 from collections import Counter
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
-from pylab import rcParams
-rcParams['figure.figsize'] = 14, 6
 
 # Read CSV File with GPS data
 data = pd.read_csv('TestRouteSvg.csv', sep=',')
@@ -29,6 +26,7 @@ print(dbscan_data)
 
 # Normalize data
 dbscan_data_scaler = StandardScaler().fit(dbscan_data)
+print(dbscan_data_scaler)
 dbscan_data = dbscan_data_scaler.transform(dbscan_data)
 print(dbscan_data)
 
@@ -59,8 +57,9 @@ imData = plt.imread('map.png')
 # fig = plt.figure()
 # ax = fig.add_axes([.1, .1, 1, 1])
 fig, ax = plt.subplots()
+ax.scatter(outliers_df['long'], outliers_df['lat'], c=color_outliers, edgecolors='black', s=30, alpha=0.5)
 ax.scatter(clusters_df['long'], clusters_df['lat'], c=colors_clusters, s=50)
-ax.scatter(outliers_df['long'], outliers_df['lat'], c=color_outliers, edgecolors='black', s=30)
+
 ax.set_xlabel('Longitude', family='Arial', fontsize=9)
 ax.set_ylabel('Latitude', family='Arial', fontsize=9)
 ax.imshow(imData, extent=[12.25800, 12.47678, 51.27130, 51.40799])
